@@ -4,6 +4,8 @@
 
 #pragma once
 
+#include "CDragFilesEdit.h"
+
 
 // CTaskManagerDlg dialog
 class CTaskManagerDlg : public CDialogEx
@@ -33,6 +35,8 @@ protected:
 public:
 	afx_msg void OnBnClickedButton1();
 	afx_msg void OnBnClickedButton2();
-	CEdit Path;
 	afx_msg void OnClose();
+
+	CDragFilesEdit Path;
 };
+

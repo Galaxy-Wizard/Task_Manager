@@ -50,7 +50,6 @@ BOOL CTaskManagerDlg::OnInitDialog()
 	SetIcon(m_hIcon, FALSE);		// Set small icon
 
 	// TODO: Add extra initialization here
-
 	int x = 0;
 	int y = 0;
 
@@ -180,3 +179,4 @@ void CTaskManagerDlg::OnClose()
 
 	CDialogEx::OnClose();
 }
+
