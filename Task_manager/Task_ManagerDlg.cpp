@@ -34,6 +34,7 @@ BEGIN_MESSAGE_MAP(CTaskManagerDlg, CDialogEx)
 	ON_WM_QUERYDRAGICON()
 	ON_BN_CLICKED(IDC_BUTTON1, &CTaskManagerDlg::OnBnClickedButton1)
 	ON_BN_CLICKED(IDC_BUTTON2, &CTaskManagerDlg::OnBnClickedButton2)
+	ON_WM_CLOSE()
 END_MESSAGE_MAP()
 
 
@@ -50,6 +51,19 @@ BOOL CTaskManagerDlg::OnInitDialog()
 
 	// TODO: Add extra initialization here
 
+	int x = 0;
+	int y = 0;
+
+	CTaskManagerApp* application = (CTaskManagerApp*)AfxGetApp();
+
+	if (application != nullptr)
+	{
+		x = application->x;
+		y = application->y;
+	}
+
+	SetWindowPos(nullptr, x, y, 0, 0,SWP_NOSIZE);
+	
 	return TRUE;  // return TRUE  unless you set the focus to a control
 }
 
@@ -136,4 +150,33 @@ void CTaskManagerDlg::OnBnClickedButton2()
 	}
 
 	ShellExecuteW(nullptr, L"Open", ApplicationPath, nullptr, ApplicationFolderPath, SW_SHOW);
+}
+
+
+void CTaskManagerDlg::OnClose()
+{
+	// TODO: Add your message handler code here and/or call default
+	int x = 0;
+	int y = 0;
+
+	auto main_window = AfxGetMainWnd();
+
+	if (main_window != nullptr)
+	{
+		RECT window_rectangle = {};
+		main_window->GetWindowRect(&window_rectangle);
+
+		x = window_rectangle.left;
+		y = window_rectangle.top;
+	}
+
+	CTaskManagerApp* application = (CTaskManagerApp *)AfxGetApp();
+
+	if (application != nullptr)
+	{
+		application->x = x;
+		application->y = y;
+	}
+
+	CDialogEx::OnClose();
 }

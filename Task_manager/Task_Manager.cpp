@@ -28,6 +28,9 @@ CTaskManagerApp::CTaskManagerApp()
 
 	// TODO: add construction code here,
 	// Place all significant initialization in InitInstance
+
+	x = 0;
+	y = 0;
 }
 
 
@@ -67,7 +70,10 @@ BOOL CTaskManagerApp::InitInstance()
 	// Change the registry key under which our settings are stored
 	// TODO: You should modify this string to be something appropriate
 	// such as the name of your company or organization
-	SetRegistryKey(L"Task Manager");
+	SetRegistryKey(L"Galaxy Group");
+
+	x = GetProfileInt(L"Main Window", L"x", 0);
+	y = GetProfileInt(L"Main Window", L"y", 0);
 
 	CTaskManagerDlg dlg;
 	m_pMainWnd = &dlg;
@@ -103,3 +109,14 @@ BOOL CTaskManagerApp::InitInstance()
 	return FALSE;
 }
 
+
+
+int CTaskManagerApp::ExitInstance()
+{
+	// TODO: Add your specialized code here and/or call the base class
+
+	WriteProfileInt(L"Main Window", L"x", x);
+	WriteProfileInt(L"Main Window", L"y", y);
+
+	return CWinApp::ExitInstance();
+}

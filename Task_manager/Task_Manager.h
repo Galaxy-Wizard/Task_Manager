@@ -18,6 +18,10 @@
 class CTaskManagerApp : public CWinApp
 {
 public:
+	int x;
+	int y;
+
+public:
 	CTaskManagerApp();
 
 // Overrides
@@ -27,6 +31,7 @@ public:
 // Implementation
 
 	DECLARE_MESSAGE_MAP()
+	virtual int ExitInstance();
 };
 
 extern CTaskManagerApp theApp;
